@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour
         Vector3 pos = (cameraFollow.transform.forward * wasdInput.y * playerBikeSpeed) +(cameraFollow.transform.right * wasdInput.x * playerBikeSpeed);
         characterController.Move(pos * Time.deltaTime);
 
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
+        isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f), 0.1f, groundMask);
         if (isGrounded)
         {
             vVelocity.y = 0;
@@ -57,6 +57,12 @@ public class PlayerControls : MonoBehaviour
     public void OnJumpPressed()
     {
         jumped = true;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        
     }
 
 }
