@@ -6,6 +6,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] CharacterController characterController;
     [SerializeField] float playerBikeSpeed = 3f;
     Vector2 wasdInput;
+    [SerializeField] GameObject cameraFollow;
 
     [Header("Gravity/Jumping")]
     [SerializeField] float jumpHeight = 3f;
@@ -18,8 +19,11 @@ public class PlayerControls : MonoBehaviour
 
     private void Update()
     {
-        Vector3 hVelocity = (transform.right * wasdInput.x + transform.forward * wasdInput.y) * playerBikeSpeed;
-        characterController.Move(hVelocity * Time.deltaTime);
+        //Vector3 hVelocity = (transform.right * wasdInput.x + transform.forward * wasdInput.y) * playerBikeSpeed;
+        //characterController.Move(hVelocity * Time.deltaTime);
+
+        Vector3 pos = (cameraFollow.transform.forward * wasdInput.y * playerBikeSpeed) +(cameraFollow.transform.right * wasdInput.x * playerBikeSpeed);
+        characterController.Move(pos * Time.deltaTime);
 
         isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
         if (isGrounded)

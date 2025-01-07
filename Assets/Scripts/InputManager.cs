@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
     {
         playerControls.RecieveInput(wasdInputManager);
         cameraControls.RecieveInput(mouseInputManager);
-        playerControls.ChangePlayerRotation(cameraControls.cameraFollow.transform.rotation.eulerAngles.y);
+        //playerControls.ChangePlayerRotation(cameraControls.cameraFollow.transform.rotation.eulerAngles.y);
     }
 
     private void OnEnable()
