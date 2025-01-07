@@ -22,13 +22,164 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInputActions"",
-    ""maps"": [],
+    ""maps"": [
+        {
+            ""name"": ""BikeGroundControls"",
+            ""id"": ""642e7846-f5c2-4bb6-853e-cce3ccdfbb23"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""40f2ceef-5693-4ad2-9c4d-f38f56224445"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""3917dce2-04f4-456e-9f50-f05bad4ed1f3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""bf6d3864-a0d7-4a86-90b2-1bb27ab28d06"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""50cc8dc4-429d-4f73-b2f7-04cfad3b19ce"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a253dfa1-db1d-46eb-95fe-787ddd5fe9ad"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6f223a60-8e7e-495c-b6b0-e6a15bfa8492"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d7d2c0f6-4238-4eda-bd4d-4ed7c9651397"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""443e6408-4c44-4805-aaa4-36ef6bf62909"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CameraControls"",
+            ""id"": ""64ac01b8-8679-4f69-af2f-482b63e514c9"",
+            ""actions"": [
+                {
+                    ""name"": ""MouseX"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""197645f9-fa4c-4398-bb72-39211282b388"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseY"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3696822c-7092-4126-8ecd-bc8eff7ad27f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f0566dcd-056c-44be-9671-7477ca07867b"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""877da144-5cef-4892-8df3-78bc67e83cde"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
     ""controlSchemes"": []
 }");
+        // BikeGroundControls
+        m_BikeGroundControls = asset.FindActionMap("BikeGroundControls", throwIfNotFound: true);
+        m_BikeGroundControls_Movement = m_BikeGroundControls.FindAction("Movement", throwIfNotFound: true);
+        m_BikeGroundControls_Jump = m_BikeGroundControls.FindAction("Jump", throwIfNotFound: true);
+        // CameraControls
+        m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
+        m_CameraControls_MouseX = m_CameraControls.FindAction("MouseX", throwIfNotFound: true);
+        m_CameraControls_MouseY = m_CameraControls.FindAction("MouseY", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
     {
+        UnityEngine.Debug.Assert(!m_BikeGroundControls.enabled, "This will cause a leak and performance issues, PlayerInputActions.BikeGroundControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CameraControls.enabled, "This will cause a leak and performance issues, PlayerInputActions.CameraControls.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -85,5 +236,123 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public int FindBinding(InputBinding bindingMask, out InputAction action)
     {
         return asset.FindBinding(bindingMask, out action);
+    }
+
+    // BikeGroundControls
+    private readonly InputActionMap m_BikeGroundControls;
+    private List<IBikeGroundControlsActions> m_BikeGroundControlsActionsCallbackInterfaces = new List<IBikeGroundControlsActions>();
+    private readonly InputAction m_BikeGroundControls_Movement;
+    private readonly InputAction m_BikeGroundControls_Jump;
+    public struct BikeGroundControlsActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public BikeGroundControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_BikeGroundControls_Movement;
+        public InputAction @Jump => m_Wrapper.m_BikeGroundControls_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_BikeGroundControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BikeGroundControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IBikeGroundControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BikeGroundControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BikeGroundControlsActionsCallbackInterfaces.Add(instance);
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IBikeGroundControlsActions instance)
+        {
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IBikeGroundControlsActions instance)
+        {
+            if (m_Wrapper.m_BikeGroundControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBikeGroundControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BikeGroundControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BikeGroundControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BikeGroundControlsActions @BikeGroundControls => new BikeGroundControlsActions(this);
+
+    // CameraControls
+    private readonly InputActionMap m_CameraControls;
+    private List<ICameraControlsActions> m_CameraControlsActionsCallbackInterfaces = new List<ICameraControlsActions>();
+    private readonly InputAction m_CameraControls_MouseX;
+    private readonly InputAction m_CameraControls_MouseY;
+    public struct CameraControlsActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public CameraControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MouseX => m_Wrapper.m_CameraControls_MouseX;
+        public InputAction @MouseY => m_Wrapper.m_CameraControls_MouseY;
+        public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraControlsActions set) { return set.Get(); }
+        public void AddCallbacks(ICameraControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Add(instance);
+            @MouseX.started += instance.OnMouseX;
+            @MouseX.performed += instance.OnMouseX;
+            @MouseX.canceled += instance.OnMouseX;
+            @MouseY.started += instance.OnMouseY;
+            @MouseY.performed += instance.OnMouseY;
+            @MouseY.canceled += instance.OnMouseY;
+        }
+
+        private void UnregisterCallbacks(ICameraControlsActions instance)
+        {
+            @MouseX.started -= instance.OnMouseX;
+            @MouseX.performed -= instance.OnMouseX;
+            @MouseX.canceled -= instance.OnMouseX;
+            @MouseY.started -= instance.OnMouseY;
+            @MouseY.performed -= instance.OnMouseY;
+            @MouseY.canceled -= instance.OnMouseY;
+        }
+
+        public void RemoveCallbacks(ICameraControlsActions instance)
+        {
+            if (m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICameraControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CameraControlsActions @CameraControls => new CameraControlsActions(this);
+    public interface IBikeGroundControlsActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface ICameraControlsActions
+    {
+        void OnMouseX(InputAction.CallbackContext context);
+        void OnMouseY(InputAction.CallbackContext context);
     }
 }
