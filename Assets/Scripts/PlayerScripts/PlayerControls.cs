@@ -5,6 +5,7 @@ public class PlayerControls : MonoBehaviour
     [Header("Controls")]
     [SerializeField] CharacterController characterController;
     [SerializeField] float playerBikeSpeed = 3f;
+    [SerializeField] float playerBikeRotRate = 3f;
     Vector2 wasdInput;
     [SerializeField] GameObject cameraFollow;
 
@@ -24,6 +25,15 @@ public class PlayerControls : MonoBehaviour
 
         Vector3 pos = (cameraFollow.transform.forward * wasdInput.y * playerBikeSpeed) +(cameraFollow.transform.right * wasdInput.x * playerBikeSpeed);
         characterController.Move(pos * Time.deltaTime);
+
+        //Rotate player when pressing a or d
+        float rotAngle = Mathf.Atan2(wasdInput.y, -wasdInput.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Euler(0, rotAngle, 0);
+        transform.rotation = Quaternion.AngleAxis(rotAngle, new Vector3(0, 0, 0));
+        //if (transform.rotation.eulerAngles.y < cameraFollow.transform.rotation.eulerAngles.y + 90)
+        //{
+        //    transform.rotation *= Quaternion.Euler(0, wasdInput.x * playerBikeRotRate, 0);
+        //}
 
         isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f), 0.1f, groundMask);
         if (isGrounded)

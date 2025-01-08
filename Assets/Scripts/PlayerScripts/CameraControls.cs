@@ -15,6 +15,7 @@ public class CameraControls : MonoBehaviour
 
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.Locked;
 
         cameraFollow.transform.rotation *= Quaternion.AngleAxis(mouseX, Vector3.up);
         cameraFollow.transform.rotation *= Quaternion.AngleAxis(mouseY, Vector3.right);
@@ -37,7 +38,7 @@ public class CameraControls : MonoBehaviour
 
     public void RecieveInput(Vector2 mouseInput)
     {
-        mouseX = mouseInput.x * sensX;
+        mouseX = mouseInput.x * -sensX;
         mouseY = mouseInput.y * sensY;
     }
 }
