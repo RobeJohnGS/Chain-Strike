@@ -27,12 +27,7 @@ public class PlayerControls : MonoBehaviour
         characterController.Move(pos * Time.deltaTime);
 
         //Rotate player when pressing a or d
-        float rotAngle = Mathf.Atan2(wasdInput.y, -wasdInput.x) * Mathf.Rad2Deg;
-        float camRotAngle = Mathf.Atan2(cameraFollow.transform.rotation.x, -cameraFollow.transform.rotation.z) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, rotAngle * (camRotAngle * (playerBikeRotRate / 100)), 0);
-        //transform.rotation = Quaternion.AngleAxis(rotAngle, new Vector3(0, 0, 0));
-        //transform.rotation = Quaternion.AngleAxis(cameraFollow.transform.position.y, new Vector3(wasdInput.x * playerBikeRotRate, wasdInput.y * playerBikeRotRate, 0));
-        //transform.rotation = Quaternion.Euler(0, (wasdInput.y * 90) + (wasdInput.x * 90), 0);
+        RotatePlayer();
 
         isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f), 0.1f, groundMask);
         if (isGrounded)
@@ -53,9 +48,23 @@ public class PlayerControls : MonoBehaviour
         characterController.Move(vVelocity * Time.deltaTime);
     }
 
-    public void ChangePlayerRotation(float cameraFollowRot)
+    private void RotatePlayer()
     {
-        transform.rotation = Quaternion.Euler(0, cameraFollowRot, 0);
+        Vector3 cameraForward = cameraFollow.transform.forward;
+        cameraForward.y = 0;
+        cameraForward.Normalize();
+
+        Vector3 cameraRight = cameraFollow.transform.right;
+        cameraRight.y = 0;
+        cameraRight.Normalize();
+
+        Vector3 newDir = (cameraRight * wasdInput.x + cameraForward * wasdInput.y).normalized;
+
+        if (newDir.sqrMagnitude > 0)
+        {
+            float rotAngle = Mathf.Atan2(newDir.x, newDir.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, rotAngle, 0);
+        }
     }
 
     public void RecieveInput(Vector2 wasdParam)
