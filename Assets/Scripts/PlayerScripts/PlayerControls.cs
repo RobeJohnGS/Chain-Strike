@@ -28,12 +28,11 @@ public class PlayerControls : MonoBehaviour
 
         //Rotate player when pressing a or d
         float rotAngle = Mathf.Atan2(wasdInput.y, -wasdInput.x) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.Euler(0, rotAngle, 0);
-        transform.rotation = Quaternion.AngleAxis(rotAngle, new Vector3(0, 0, 0));
-        //if (transform.rotation.eulerAngles.y < cameraFollow.transform.rotation.eulerAngles.y + 90)
-        //{
-        //    transform.rotation *= Quaternion.Euler(0, wasdInput.x * playerBikeRotRate, 0);
-        //}
+        float camRotAngle = Mathf.Atan2(cameraFollow.transform.rotation.x, -cameraFollow.transform.rotation.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, rotAngle * (camRotAngle * (playerBikeRotRate / 100)), 0);
+        //transform.rotation = Quaternion.AngleAxis(rotAngle, new Vector3(0, 0, 0));
+        //transform.rotation = Quaternion.AngleAxis(cameraFollow.transform.position.y, new Vector3(wasdInput.x * playerBikeRotRate, wasdInput.y * playerBikeRotRate, 0));
+        //transform.rotation = Quaternion.Euler(0, (wasdInput.y * 90) + (wasdInput.x * 90), 0);
 
         isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f), 0.1f, groundMask);
         if (isGrounded)
