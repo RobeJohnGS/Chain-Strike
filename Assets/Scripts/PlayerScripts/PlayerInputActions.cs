@@ -136,6 +136,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""039b3000-6b8b-4de1-afb2-c6d030e15d4c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -160,6 +169,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""MouseY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""228508df-a14c-4c94-871b-eec61fe00691"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -174,6 +194,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
         m_CameraControls_MouseX = m_CameraControls.FindAction("MouseX", throwIfNotFound: true);
         m_CameraControls_MouseY = m_CameraControls.FindAction("MouseY", throwIfNotFound: true);
+        m_CameraControls_Aim = m_CameraControls.FindAction("Aim", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -297,12 +318,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<ICameraControlsActions> m_CameraControlsActionsCallbackInterfaces = new List<ICameraControlsActions>();
     private readonly InputAction m_CameraControls_MouseX;
     private readonly InputAction m_CameraControls_MouseY;
+    private readonly InputAction m_CameraControls_Aim;
     public struct CameraControlsActions
     {
         private @PlayerInputActions m_Wrapper;
         public CameraControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MouseX => m_Wrapper.m_CameraControls_MouseX;
         public InputAction @MouseY => m_Wrapper.m_CameraControls_MouseY;
+        public InputAction @Aim => m_Wrapper.m_CameraControls_Aim;
         public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,6 +341,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MouseY.started += instance.OnMouseY;
             @MouseY.performed += instance.OnMouseY;
             @MouseY.canceled += instance.OnMouseY;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(ICameraControlsActions instance)
@@ -328,6 +354,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MouseY.started -= instance.OnMouseY;
             @MouseY.performed -= instance.OnMouseY;
             @MouseY.canceled -= instance.OnMouseY;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(ICameraControlsActions instance)
@@ -354,5 +383,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

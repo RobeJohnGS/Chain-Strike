@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public class CameraControls : MonoBehaviour
@@ -11,7 +12,10 @@ public class CameraControls : MonoBehaviour
     float mouseY;
 
     //The game object that the camera looks at and follows
+    [Header("Camera Objects")]
     [SerializeField] public GameObject cameraFollow;
+    [SerializeField] CinemachineVirtualCamera mainCam;
+    [SerializeField] CinemachineVirtualCamera aimCam;
 
     private void Update()
     {
@@ -33,6 +37,12 @@ public class CameraControls : MonoBehaviour
 
         cameraFollow.transform.localEulerAngles = angles;
         
+    }
+
+    public void AimPressed(bool pressed)
+    {
+        aimCam.enabled = pressed;
+        mainCam.enabled = !pressed;
     }
     
 
