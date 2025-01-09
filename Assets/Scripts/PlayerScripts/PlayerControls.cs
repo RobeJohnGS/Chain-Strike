@@ -18,18 +18,21 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     bool isGrounded;
 
+    //private void Awake()
+    //{
+    //    this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+    //}
+
     private void Update()
     {
-        //Vector3 hVelocity = (transform.right * wasdInput.x + transform.forward * wasdInput.y) * playerBikeSpeed;
-        //characterController.Move(hVelocity * Time.deltaTime);
-
-        Vector3 pos = (cameraFollow.transform.forward * wasdInput.y * playerBikeSpeed) +(cameraFollow.transform.right * wasdInput.x * playerBikeSpeed);
-        characterController.Move(pos * Time.deltaTime);
+        Vector3 pos = (cameraFollow.transform.forward * wasdInput.y * playerBikeSpeed) + (cameraFollow.transform.right * wasdInput.x * playerBikeSpeed);
+        //characterController.Move(pos * Time.deltaTime);
+        transform.position += pos * Time.deltaTime;
 
         //Rotate player when pressing a or d
         RotatePlayer();
 
-        isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f), 0.1f, groundMask);
+        isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), 0.1f, groundMask);
         if (isGrounded)
         {
             vVelocity.y = 0;
@@ -45,7 +48,7 @@ public class PlayerControls : MonoBehaviour
         }
 
         vVelocity.y += gravity * Time.deltaTime;
-        characterController.Move(vVelocity * Time.deltaTime);
+        //characterController.Move(vVelocity * Time.deltaTime);
     }
 
     private void RotatePlayer()
@@ -63,7 +66,8 @@ public class PlayerControls : MonoBehaviour
         if (newDir.sqrMagnitude > 0)
         {
             float rotAngle = Mathf.Atan2(newDir.x, newDir.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, rotAngle, 0);
+            Quaternion targetRot = Quaternion.Euler(0, rotAngle, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * playerBikeRotRate);
         }
     }
 
@@ -80,7 +84,9 @@ public class PlayerControls : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), 0.1f);
+        Gizmos.DrawCube(gameObject.GetComponent<Rigidbody>().centerOfMass, Vector3.one / 10);
     }
 
 }
