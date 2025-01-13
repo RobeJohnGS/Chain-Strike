@@ -48,7 +48,7 @@ public class CameraControls : MonoBehaviour
 
     public void RecieveInput(Vector2 mouseInput)
     {
-        mouseX = mouseInput.x * -sensX;
-        mouseY = mouseInput.y * sensY;
+        mouseX = mouseInput.x * sensX;
+        mouseY = mouseInput.y * -sensY;
     }
 }

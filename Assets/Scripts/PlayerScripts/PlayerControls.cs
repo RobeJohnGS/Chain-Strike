@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float playerBikeSpeed = 3f;
     [SerializeField] float playerBikeRotRate = 3f;
     Vector2 wasdInput;
+    [SerializeField] bool canMove;
     
 
     [Header("Jumping")]
@@ -16,7 +17,7 @@ public class PlayerControls : MonoBehaviour
     bool jumped = false;
     //Vertical velocity
     [SerializeField] LayerMask groundMask;
-    bool isGrounded;
+    public bool isGrounded;
 
     private void Update()
     {
@@ -26,12 +27,15 @@ public class PlayerControls : MonoBehaviour
          * The Vector input takes the direction the camera is looking (except the Y axis) and if the player is presssing W A S or D then it multiplies that input press with the bike speed and multiplies that by the camera direction to make the player go the way the camera is facing.
          * I did it this way because before it would see if the camera was facing up or down and try to force the player into the ground or air.
          */
-        Vector3 pos = (new Vector3(cameraFollow.transform.forward.x, 0, cameraFollow.transform.forward.z) * wasdInput.y * playerBikeSpeed) + (new Vector3(cameraFollow.transform.right.x, 0, cameraFollow.transform.right.z) * wasdInput.x * playerBikeSpeed);
-        //Takes the players position, adds the complicated vector and multiplies that by Time.deltaTime to move the bike.
-        transform.position += pos * Time.deltaTime;
+        if (canMove) { 
+            Vector3 pos = (new Vector3(cameraFollow.transform.forward.x, 0, cameraFollow.transform.forward.z) * wasdInput.y * playerBikeSpeed) + (new Vector3(cameraFollow.transform.right.x, 0, cameraFollow.transform.right.z) * wasdInput.x * playerBikeSpeed);
+            //Takes the players position, adds the complicated vector and multiplies that by Time.deltaTime to move the bike.
+            transform.position += pos * Time.deltaTime;
+
+            //Rotate player to face pressed button direction
+            RotatePlayer();
+        }
         
-        //Rotate player to face pressed button direction
-        RotatePlayer();
 
         //If the player has jumped and they are grounded, then it adds the jumpHeight * 20 to the force making it go up.
         if(jumped)
