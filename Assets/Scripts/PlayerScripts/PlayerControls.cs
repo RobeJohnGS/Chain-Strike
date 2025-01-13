@@ -1,15 +1,27 @@
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class PlayerControls : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] GameObject cameraFollow;
     [SerializeField] Rigidbody rb;
+
     [Header("Controls")]
     [SerializeField] float playerBikeSpeed = 3f;
     [SerializeField] float playerBikeRotRate = 3f;
     Vector2 wasdInput;
-    [SerializeField] bool canMove;
+    [SerializeField] public bool canMove;
+
+    [Header("Rail Attributes")]
+    public bool onRail;
+    [SerializeField] float grindSpeed;
+    [SerializeField] float heightOffset;
+    float timeForFullSpline;
+    float elapsedTime;
+    [SerializeField] float lerpSpeed = 10f;
+    [SerializeField] RailGrindScript railGrindScript;
     
 
     [Header("Jumping")]
@@ -19,10 +31,27 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     public bool isGrounded;
 
+    private void FixedUpdate()
+    {
+        if (onRail)
+        {
+            MovePlayerAlongRail();
+        }
+    }
+
     private void Update()
     {
         //Creates a sphere at the bottom of the center of the bike, if it is overlapping with the ground, then you can jump.
         isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), 0.1f, groundMask);
+
+        if (onRail)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
         /*Creates a vector 3 to move the player with these properites
          * The Vector input takes the direction the camera is looking (except the Y axis) and if the player is presssing W A S or D then it multiplies that input press with the bike speed and multiplies that by the camera direction to make the player go the way the camera is facing.
          * I did it this way because before it would see if the camera was facing up or down and try to force the player into the ground or air.
@@ -75,6 +104,79 @@ public class PlayerControls : MonoBehaviour
             float rotAngle = Mathf.Atan2(newDir.x, newDir.z) * Mathf.Rad2Deg;
             Quaternion targetRot = Quaternion.Euler(0, rotAngle, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * playerBikeRotRate);
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Rail")
+        {
+            onRail = true;
+            railGrindScript = other.gameObject.GetComponent<RailGrindScript>();
+            CalculateAndSetRailPosition();
+        }
+    }
+
+    private void CalculateAndSetRailPosition()
+    {
+        timeForFullSpline = railGrindScript.totalSplineLength / grindSpeed;
+        Vector3 splinePoint;
+        float normalisedTime = railGrindScript.CalculateTargetRailPoint(transform.position, out splinePoint);
+        elapsedTime = timeForFullSpline * normalisedTime;
+        float3 pos, forward, up;
+        SplineUtility.Evaluate(railGrindScript.railSpline.Spline, normalisedTime, out pos, out forward, out up);
+        railGrindScript.CalculateDirection(forward, transform.forward);
+        transform.position = splinePoint + (transform.up * heightOffset);
+    }
+
+    private void ExitOffRail()
+    {
+        onRail = false;
+        railGrindScript = null;
+        transform.position += transform.forward * 1;
+    }
+
+    private void MovePlayerAlongRail()
+    {
+        if (railGrindScript != null && onRail)
+        {
+            float progress = elapsedTime / timeForFullSpline;
+            if (progress < 0 || progress > 1f)
+            {
+                ExitOffRail();
+                return;
+            }
+            float nextTimeNormalised;
+            if (railGrindScript.normalDir)
+            {
+                nextTimeNormalised = (elapsedTime + Time.deltaTime) / timeForFullSpline;
+            }
+            else
+            {
+                nextTimeNormalised = (elapsedTime - Time.deltaTime) / timeForFullSpline;
+            }
+
+            float3 pos, tangent, up;
+            float3 nextPosFloat, nextTan, nextUp;
+            SplineUtility.Evaluate(railGrindScript.railSpline.Spline, progress, out pos, out tangent, out up);
+            SplineUtility.Evaluate(railGrindScript.railSpline.Spline, nextTimeNormalised, out nextPosFloat, out nextTan, out nextUp);
+
+            Vector3 worldPos = railGrindScript.LocalToWorldConversion(pos);
+            Vector3 nextPos = railGrindScript.LocalToWorldConversion(nextPosFloat);
+
+            transform.position = worldPos + (transform.up * heightOffset);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextPos - worldPos), lerpSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.up, up) * transform.rotation, lerpSpeed * Time.deltaTime);
+
+            if (railGrindScript.normalDir)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+            else
+            {
+                elapsedTime -= Time.deltaTime;
+            }
         }
     }
 
