@@ -69,7 +69,7 @@ public class PlayerControls : MonoBehaviour
         //If the player has jumped and they are grounded, then it adds the jumpHeight * 20 to the force making it go up.
         if(jumped)
         {
-            if (isGrounded)
+            if (isGrounded || onRail)
             {
                 rb.AddForce(new Vector3(0, jumpHeight * 20, 0), ForceMode.Impulse);
             }

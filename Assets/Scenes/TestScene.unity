@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 12272405}
   - component: {fileID: 12272404}
   - component: {fileID: 12272408}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RailSpline
   m_TagString: Rail
   m_Icon: {fileID: 0}
