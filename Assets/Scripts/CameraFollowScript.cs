@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraFollowScript : MonoBehaviour
 {
     [SerializeField] Transform playerTransform;
+    [SerializeField] float cameraSmoothing;
 
     // Update is called once per frame
     void Update()
