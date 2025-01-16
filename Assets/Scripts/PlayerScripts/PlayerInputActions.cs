@@ -44,6 +44,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Trick1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0e5958d-710c-4761-9282-a62dc66cff5d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Trick2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d61ac77a-e421-4ad1-a226-249a62e6ae83"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Trick3"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fca9654-c446-41e1-a408-cc2ffaa537a9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +130,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""ControllerMove"",
+                    ""id"": ""1a64d343-5e13-400d-8659-c386f788469a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b4b813e4-1da9-400a-9aa9-d7b1eaa22122"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""8b9310b9-345c-4102-b025-523e08a2174f"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""3a0ead57-27a2-4b61-9efe-ad17a041e9d7"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f9630ba6-21a7-493c-8000-4924cb11d59c"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""443e6408-4c44-4805-aaa4-36ef6bf62909"",
                     ""path"": ""<Keyboard>/space"",
@@ -110,6 +192,50 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d27e816e-be78-469a-afb4-b2489161c352"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6463bf1-5dae-4908-b64f-e49883a7515f"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trick1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""faf26642-558e-4baa-948e-5518373f9554"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trick2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""083c0bf2-8ab2-462d-a73c-52f8185910f3"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trick3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -161,6 +287,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2f0e928d-8948-4e2c-a859-52062b393a5e"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""877da144-5cef-4892-8df3-78bc67e83cde"",
                     ""path"": ""<Mouse>/delta/y"",
                     ""interactions"": """",
@@ -172,9 +309,31 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f82ec25b-cded-4e1f-a048-83061261207c"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""228508df-a14c-4c94-871b-eec61fe00691"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5fe3757-f0b2-434c-a60f-998aea280aa8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Aim"",
@@ -190,6 +349,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_BikeGroundControls = asset.FindActionMap("BikeGroundControls", throwIfNotFound: true);
         m_BikeGroundControls_Movement = m_BikeGroundControls.FindAction("Movement", throwIfNotFound: true);
         m_BikeGroundControls_Jump = m_BikeGroundControls.FindAction("Jump", throwIfNotFound: true);
+        m_BikeGroundControls_Trick1 = m_BikeGroundControls.FindAction("Trick1", throwIfNotFound: true);
+        m_BikeGroundControls_Trick2 = m_BikeGroundControls.FindAction("Trick2", throwIfNotFound: true);
+        m_BikeGroundControls_Trick3 = m_BikeGroundControls.FindAction("Trick3", throwIfNotFound: true);
         // CameraControls
         m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
         m_CameraControls_MouseX = m_CameraControls.FindAction("MouseX", throwIfNotFound: true);
@@ -264,12 +426,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IBikeGroundControlsActions> m_BikeGroundControlsActionsCallbackInterfaces = new List<IBikeGroundControlsActions>();
     private readonly InputAction m_BikeGroundControls_Movement;
     private readonly InputAction m_BikeGroundControls_Jump;
+    private readonly InputAction m_BikeGroundControls_Trick1;
+    private readonly InputAction m_BikeGroundControls_Trick2;
+    private readonly InputAction m_BikeGroundControls_Trick3;
     public struct BikeGroundControlsActions
     {
         private @PlayerInputActions m_Wrapper;
         public BikeGroundControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_BikeGroundControls_Movement;
         public InputAction @Jump => m_Wrapper.m_BikeGroundControls_Jump;
+        public InputAction @Trick1 => m_Wrapper.m_BikeGroundControls_Trick1;
+        public InputAction @Trick2 => m_Wrapper.m_BikeGroundControls_Trick2;
+        public InputAction @Trick3 => m_Wrapper.m_BikeGroundControls_Trick3;
         public InputActionMap Get() { return m_Wrapper.m_BikeGroundControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +453,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Trick1.started += instance.OnTrick1;
+            @Trick1.performed += instance.OnTrick1;
+            @Trick1.canceled += instance.OnTrick1;
+            @Trick2.started += instance.OnTrick2;
+            @Trick2.performed += instance.OnTrick2;
+            @Trick2.canceled += instance.OnTrick2;
+            @Trick3.started += instance.OnTrick3;
+            @Trick3.performed += instance.OnTrick3;
+            @Trick3.canceled += instance.OnTrick3;
         }
 
         private void UnregisterCallbacks(IBikeGroundControlsActions instance)
@@ -295,6 +472,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Trick1.started -= instance.OnTrick1;
+            @Trick1.performed -= instance.OnTrick1;
+            @Trick1.canceled -= instance.OnTrick1;
+            @Trick2.started -= instance.OnTrick2;
+            @Trick2.performed -= instance.OnTrick2;
+            @Trick2.canceled -= instance.OnTrick2;
+            @Trick3.started -= instance.OnTrick3;
+            @Trick3.performed -= instance.OnTrick3;
+            @Trick3.canceled -= instance.OnTrick3;
         }
 
         public void RemoveCallbacks(IBikeGroundControlsActions instance)
@@ -378,6 +564,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnTrick1(InputAction.CallbackContext context);
+        void OnTrick2(InputAction.CallbackContext context);
+        void OnTrick3(InputAction.CallbackContext context);
     }
     public interface ICameraControlsActions
     {
