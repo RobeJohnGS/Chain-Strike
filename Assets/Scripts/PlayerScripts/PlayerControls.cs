@@ -185,6 +185,11 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    public void PauseGame()
+    {
+
+    }
+
     public void RecieveInput(Vector2 wasdParam)
     {
         wasdInput = wasdParam;
