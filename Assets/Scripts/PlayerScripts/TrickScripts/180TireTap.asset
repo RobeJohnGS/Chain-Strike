@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b580223ff164dd4b95e7a8236e9c928, type: 3}
   m_Name: 180TireTap
   m_EditorClassIdentifier: 
-  trickDmg: 0
-  trickBaseDmg: 0
-  trickKnockback: 0
-  trickParam: 
+  trickDmg: 5
+  trickBaseDmg: 5
+  trickKnockback: 5
+  trickParam: 180TireTap

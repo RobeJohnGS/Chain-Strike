@@ -9,7 +9,7 @@ public class ControlTrickScript : MonoBehaviour
     //Ground Trick 1
     [SerializeField] TrickScript barSpin;
     //Ground Trick 2
-    [SerializeField] TrickScript groundTrick2;
+    [SerializeField] TrickScript tireTap180;
     //Air Trick 1
     [SerializeField] TrickScript tailWhip;
     //Air Trick 2
@@ -72,7 +72,7 @@ public class ControlTrickScript : MonoBehaviour
                 Debug.Log("Air Trick2");
                 break;
             case PlayerState.ONGROUND:
-                playerAnimator.SetTrigger(groundTrick2.trickData.trickParam);
+                playerAnimator.SetTrigger(tireTap180.trickData.trickParam);
                 Debug.Log("Ground Trick2");
                 break;
             case PlayerState.ONRAIL:
