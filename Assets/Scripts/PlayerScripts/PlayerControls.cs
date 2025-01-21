@@ -37,21 +37,24 @@ public class PlayerControls : MonoBehaviour
         {
             MovePlayerAlongRail();
         }
-        gameObject.GetComponent<Rigidbody>().useGravity = !onRail;
-        gameObject.GetComponent<Rigidbody>().isKinematic = onRail;
     }
 
     private void Update()
     {
         //Creates a sphere at the bottom of the center of the bike, if it is overlapping with the ground, then you can jump.
         isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), 0.1f, groundMask);
+        //Comment dude
         if (onRail)
         {
             canMove = false;
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
         else
         {
             canMove = true;
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
         /*Creates a vector 3 to move the player with these properites
          * The Vector input takes the direction the camera is looking (except the Y axis) and if the player is presssing W A S or D then it multiplies that input press with the bike speed and multiplies that by the camera direction to make the player go the way the camera is facing.
@@ -70,13 +73,13 @@ public class PlayerControls : MonoBehaviour
         //If the player has jumped and they are grounded, then it adds the jumpHeight * 20 to the force making it go up.
         if (jumped)
         {
-            if (isGrounded || onRail)
+            if (isGrounded)
             {
-                if (onRail)
-                {
-                    ExitOffRail();
-                }
-                rb.AddForce(new Vector3(0, jumpHeight * 20, 0), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpHeight * 20, ForceMode.Impulse);
+            }else if (onRail)
+            {
+                ExitOffRail();
+                rb.AddForce(Vector3.up * jumpHeight * 20, ForceMode.Impulse);
             }
             //After the player presses jump, then it resets so they can again when they are on the ground.
             jumped = false;
@@ -132,13 +135,17 @@ public class PlayerControls : MonoBehaviour
         float3 pos, forward, up;
         SplineUtility.Evaluate(railGrindScript.railSpline.Spline, normalisedTime, out pos, out forward, out up);
         railGrindScript.CalculateDirection(forward, transform.forward);
-        transform.position = splinePoint + (transform.up * heightOffset);
+        //transform.position = splinePoint + (transform.up * heightOffset);
+        //transform.position = Vector3.Lerp(transform.position, splinePoint + (transform.up * heightOffset), lerpSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, splinePoint + (transform.up * heightOffset), lerpSpeed * Time.deltaTime);
     }
 
     private void ExitOffRail()
     {
         onRail = false;
         railGrindScript = null;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
         transform.position += transform.forward * 1;
     }
 
@@ -170,7 +177,9 @@ public class PlayerControls : MonoBehaviour
             Vector3 worldPos = railGrindScript.LocalToWorldConversion(pos);
             Vector3 nextPos = railGrindScript.LocalToWorldConversion(nextPosFloat);
 
-            transform.position = worldPos + (transform.up * heightOffset);
+            //transform.position = worldPos + (transform.up * heightOffset);
+            //transform.position = Vector3.Lerp(transform.position, worldPos + (transform.up * heightOffset), lerpSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, worldPos + (transform.up * heightOffset), lerpSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextPos - worldPos), lerpSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.up, up) * transform.rotation, lerpSpeed * Time.deltaTime);
 

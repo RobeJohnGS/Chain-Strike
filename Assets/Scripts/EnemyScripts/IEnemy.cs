@@ -20,6 +20,9 @@ public interface IEnemy
     void DealDamage();
     //Take damage from the player
     void TakeDamage(TrickScript trick);
+
+    //Enemy Died
+    void OnDeath();
     //Set the enemy health
     void SetHealth(float h);
     //Get the enemies health

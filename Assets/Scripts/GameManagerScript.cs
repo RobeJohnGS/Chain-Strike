@@ -19,8 +19,8 @@ public class GameManagerScript : MonoBehaviour
 
     public void PauseGame()
     {
-        Time.timeScale = 0.0f;
-        Cursor.lockState = CursorLockMode.None;
+        //Time.timeScale = 0.0f;
+        //Cursor.lockState = CursorLockMode.None;
         if (editorMode)
         {
             EditorApplication.ExitPlaymode();

@@ -987,11 +987,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.4, z: 0.3}
+  Damping: {x: 0, y: 0, z: 0}
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 0
-  CameraDistance: 3
+  CameraDistance: 3.5
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 0
@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
+  Damping: {x: 0, y: 0, z: 0}
   ShoulderOffset: {x: 0.5, y: -0.2, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
@@ -1529,7 +1529,7 @@ Transform:
   m_GameObject: {fileID: 1917828161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: -3}
+  m_LocalPosition: {x: 0, y: 2.4, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1678,7 +1678,7 @@ Transform:
   m_GameObject: {fileID: 1943264629}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08937247, y: 0.7291328, z: -0.09703852, w: 0.6715368}
-  m_LocalPosition: {x: 0, y: 2.4, z: -3}
+  m_LocalPosition: {x: 0, y: 2.4, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1790,6 +1790,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2314071473840436761, guid: a9394df1575748c4ba2f013851f5f2c2, type: 3}
+      propertyPath: editorMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4949250840884847952, guid: a9394df1575748c4ba2f013851f5f2c2, type: 3}
       propertyPath: trickControls
       value: 
@@ -1862,6 +1866,14 @@ PrefabInstance:
     - target: {fileID: 356485404783219562, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
       propertyPath: m_Constraints
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 356485404783219562, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 813631726786793354, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
+      propertyPath: lerpSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 813631726786793354, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
       propertyPath: cameraFollow

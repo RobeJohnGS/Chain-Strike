@@ -7,7 +7,7 @@ public class DummyEnemy : MonoBehaviour, IEnemy
 
     public float damageValue => throw new System.NotImplementedException();
 
-    public float damageRange { get; set; } = 5f;
+    public float damageRange { get; set; } = 3f;
 
     public Transform playerTransform => GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
@@ -40,6 +40,11 @@ public class DummyEnemy : MonoBehaviour, IEnemy
                 gameObject.transform.position += gameObject.transform.forward * moveSpeed * Time.deltaTime;
                 break;
         }
+
+        if (health <= 0)
+        {
+            OnDeath();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,7 +57,7 @@ public class DummyEnemy : MonoBehaviour, IEnemy
 
     public void DealDamage()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("KILLL");
     }
 
     public float GetHealth()
@@ -71,10 +76,16 @@ public class DummyEnemy : MonoBehaviour, IEnemy
         gameObject.GetComponent<Rigidbody>().AddForce((gameObject.transform.forward * -1) * trick.trickData.trickKnockback, ForceMode.Impulse);
         Debug.Log("Took " + trick.trickData.trickDmg + " damage");
     }
+    public void OnDeath()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, damageRange);
     }
+
+    
 }
