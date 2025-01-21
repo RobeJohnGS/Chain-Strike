@@ -7,15 +7,12 @@ public class TrickScript : MonoBehaviour
     [SerializeField] Animator playerAnimator;
     [SerializeField] string airTrick1;
     [SerializeField] string airTrick2;
-    [SerializeField] string airTrick3;
 
     [SerializeField] string groundTrick1;
     [SerializeField] string groundTrick2;
-    [SerializeField] string groundTrick3;
 
     [SerializeField] string railTrick1;
     [SerializeField] string railTrick2;
-    [SerializeField] string railTrick3;
 
     [Header("Player Attribues")]
     [SerializeField] PlayerControls playerControls;
