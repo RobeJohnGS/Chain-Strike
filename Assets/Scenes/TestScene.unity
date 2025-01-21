@@ -1386,6 +1386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: training_dummy
       objectReference: {fileID: 0}
+    - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.23
@@ -1930,6 +1934,14 @@ PrefabInstance:
     - target: {fileID: 3713223551874758311, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269256015116065477, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269256015116065477, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4658830356097568814, guid: 7f32a1da042fb5e40af88dd44e2a96cd, type: 3}
       propertyPath: m_IsActive
