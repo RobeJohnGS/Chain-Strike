@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
         cameraControlsActions = playerIA.CameraControls;
         playerControlsActions = playerIA.PlayerControls;
 
-        bikeGroundControlsActions.Movement.performed += ctx => wasdInputManager = ctx.ReadValue<Vector2>();
+        
         bikeGroundControlsActions.Jump.performed += _ => playerControls.OnJumpPressed();
         //Pause input
         playerControlsActions.Pause.performed += _ => gameManagerScript.PauseGame();
@@ -39,6 +39,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        bikeGroundControlsActions.Movement.performed += ctx => wasdInputManager = ctx.ReadValue<Vector2>();
         playerControls.RecieveInput(wasdInputManager);
         cameraControls.RecieveInput(mouseInputManager);
         //playerControls.ChangePlayerRotation(cameraControls.cameraFollow.transform.rotation.eulerAngles.y);

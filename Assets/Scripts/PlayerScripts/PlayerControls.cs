@@ -205,7 +205,7 @@ public class PlayerControls : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), 0.1f);
-        Gizmos.DrawCube(gameObject.GetComponent<Rigidbody>().centerOfMass, Vector3.one / 10);
+        //Gizmos.DrawCube(gameObject.GetComponent<Rigidbody>().centerOfMass, Vector3.one / 10);
     }
 
 }

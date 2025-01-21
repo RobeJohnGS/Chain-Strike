@@ -6,8 +6,5 @@ public interface ITrick
     float trickBaseDmg{ get;}
     float trickKnockback { get; }
     string trickParam { get; }
-    float TrickPerformed(float dmgMult)
-    {
-        return trickBaseDmg * dmgMult;
-    }
+    float TrickPerformed(float dmgMult);
 }
