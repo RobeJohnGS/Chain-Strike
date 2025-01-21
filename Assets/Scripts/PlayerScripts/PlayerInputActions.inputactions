@@ -40,15 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Trick3",
-                    "type": "Button",
-                    "id": "0fca9654-c446-41e1-a408-cc2ffaa537a9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -197,6 +188,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fe0d7754-8178-4b8e-a59f-a9cd235adca0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trick1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "faf26642-558e-4baa-948e-5518373f9554",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -208,12 +210,12 @@
                 },
                 {
                     "name": "",
-                    "id": "083c0bf2-8ab2-462d-a73c-52f8185910f3",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "f7c92db4-6ab0-4ae1-b268-e0bc137c769a",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trick3",
+                    "action": "Trick2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,18 +1,23 @@
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class TrickScript : MonoBehaviour
+public class ControlTrickScript : MonoBehaviour
 {
-    [Header("Player Animations")]
+    [Header("Player Animation")]
     [SerializeField] Animator playerAnimator;
-    [SerializeField] string airTrick1;
-    [SerializeField] string airTrick2;
-
-    [SerializeField] string groundTrick1;
-    [SerializeField] string groundTrick2;
-
-    [SerializeField] string railTrick1;
-    [SerializeField] string railTrick2;
+    [Header("Tricks")]
+    //Ground Trick 1
+    [SerializeField] TrickScript barSpin;
+    //Ground Trick 2
+    [SerializeField] TrickScript groundTrick2;
+    //Air Trick 1
+    [SerializeField] TrickScript tailWhip;
+    //Air Trick 2
+    [SerializeField] TrickScript supermanKick;
+    //Rail Trick 1
+    [SerializeField] TrickScript railTrick1;
+    //Rail Trick 2
+    [SerializeField] TrickScript railTrick2;
 
     [Header("Player Attribues")]
     [SerializeField] PlayerControls playerControls;
@@ -43,15 +48,15 @@ public class TrickScript : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.INAIR:
-                playerAnimator.SetTrigger(airTrick1);
+                playerAnimator.SetTrigger(tailWhip.trickData.trickParam);
                 Debug.Log("Air Trick1");
                 break;
             case PlayerState.ONGROUND:
-                playerAnimator.SetTrigger(groundTrick1);
+                playerAnimator.SetTrigger(barSpin.trickData.trickParam);
                 Debug.Log("Ground Trick1");
                 break;
             case PlayerState.ONRAIL:
-                playerAnimator.SetTrigger(railTrick1);
+                playerAnimator.SetTrigger(railTrick1.trickData.trickParam);
                 Debug.Log("Rail Trick1");
                 break;
         }
@@ -63,36 +68,16 @@ public class TrickScript : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.INAIR:
-                playerAnimator.SetTrigger(airTrick2);
+                playerAnimator.SetTrigger(supermanKick.trickData.trickParam);
                 Debug.Log("Air Trick2");
                 break;
             case PlayerState.ONGROUND:
-                playerAnimator.SetTrigger(groundTrick2);
+                playerAnimator.SetTrigger(groundTrick2.trickData.trickParam);
                 Debug.Log("Ground Trick2");
                 break;
             case PlayerState.ONRAIL:
-                playerAnimator.SetTrigger(railTrick2);
+                playerAnimator.SetTrigger(railTrick2.trickData.trickParam);
                 Debug.Log("Rail Trick2");
-                break;
-        }
-
-    }
-
-    public void Trick3()
-    {
-        switch (playerState)
-        {
-            case PlayerState.INAIR:
-                playerAnimator.SetTrigger(airTrick3);
-                Debug.Log("Air Trick3");
-                break;
-            case PlayerState.ONGROUND:
-                playerAnimator.SetTrigger(groundTrick3);
-                Debug.Log("Ground Trick3");
-                break;
-            case PlayerState.ONRAIL:
-                playerAnimator.SetTrigger(railTrick3);
-                Debug.Log("Rail Trick3");
                 break;
         }
 

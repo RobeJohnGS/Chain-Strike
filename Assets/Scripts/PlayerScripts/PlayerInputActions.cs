@@ -62,15 +62,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Trick3"",
-                    ""type"": ""Button"",
-                    ""id"": ""0fca9654-c446-41e1-a408-cc2ffaa537a9"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -219,6 +210,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""fe0d7754-8178-4b8e-a59f-a9cd235adca0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trick1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""faf26642-558e-4baa-948e-5518373f9554"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
@@ -230,12 +232,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""083c0bf2-8ab2-462d-a73c-52f8185910f3"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""f7c92db4-6ab0-4ae1-b268-e0bc137c769a"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Trick3"",
+                    ""action"": ""Trick2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -390,7 +392,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_BikeGroundControls_Jump = m_BikeGroundControls.FindAction("Jump", throwIfNotFound: true);
         m_BikeGroundControls_Trick1 = m_BikeGroundControls.FindAction("Trick1", throwIfNotFound: true);
         m_BikeGroundControls_Trick2 = m_BikeGroundControls.FindAction("Trick2", throwIfNotFound: true);
-        m_BikeGroundControls_Trick3 = m_BikeGroundControls.FindAction("Trick3", throwIfNotFound: true);
         // CameraControls
         m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
         m_CameraControls_MouseX = m_CameraControls.FindAction("MouseX", throwIfNotFound: true);
@@ -471,7 +472,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_BikeGroundControls_Jump;
     private readonly InputAction m_BikeGroundControls_Trick1;
     private readonly InputAction m_BikeGroundControls_Trick2;
-    private readonly InputAction m_BikeGroundControls_Trick3;
     public struct BikeGroundControlsActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -480,7 +480,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_BikeGroundControls_Jump;
         public InputAction @Trick1 => m_Wrapper.m_BikeGroundControls_Trick1;
         public InputAction @Trick2 => m_Wrapper.m_BikeGroundControls_Trick2;
-        public InputAction @Trick3 => m_Wrapper.m_BikeGroundControls_Trick3;
         public InputActionMap Get() { return m_Wrapper.m_BikeGroundControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -502,9 +501,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Trick2.started += instance.OnTrick2;
             @Trick2.performed += instance.OnTrick2;
             @Trick2.canceled += instance.OnTrick2;
-            @Trick3.started += instance.OnTrick3;
-            @Trick3.performed += instance.OnTrick3;
-            @Trick3.canceled += instance.OnTrick3;
         }
 
         private void UnregisterCallbacks(IBikeGroundControlsActions instance)
@@ -521,9 +517,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Trick2.started -= instance.OnTrick2;
             @Trick2.performed -= instance.OnTrick2;
             @Trick2.canceled -= instance.OnTrick2;
-            @Trick3.started -= instance.OnTrick3;
-            @Trick3.performed -= instance.OnTrick3;
-            @Trick3.canceled -= instance.OnTrick3;
         }
 
         public void RemoveCallbacks(IBikeGroundControlsActions instance)
@@ -655,7 +648,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnTrick1(InputAction.CallbackContext context);
         void OnTrick2(InputAction.CallbackContext context);
-        void OnTrick3(InputAction.CallbackContext context);
     }
     public interface ICameraControlsActions
     {
