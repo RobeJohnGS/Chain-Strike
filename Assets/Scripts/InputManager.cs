@@ -1,4 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class InputManager : MonoBehaviour
 {
@@ -24,7 +27,6 @@ public class InputManager : MonoBehaviour
         cameraControlsActions = playerIA.CameraControls;
         playerControlsActions = playerIA.PlayerControls;
 
-
         bikeGroundControlsActions.Jump.performed += _ => playerControls.OnJumpPressed();
         //Pause input
         playerControlsActions.Pause.performed += _ => gameManagerScript.PauseGame();
@@ -32,12 +34,14 @@ public class InputManager : MonoBehaviour
         bikeGroundControlsActions.Trick1.performed += _ => trickControls.Trick1();
         bikeGroundControlsActions.Trick2.performed += _ => trickControls.Trick2();
 
-
+        foreach(var device in InputSystem.devices)
+        {
+            Debug.Log(device.ToString());
+        }
     }
 
     private void Update()
     {
-        //bikeGroundControlsActions.Movement.performed += ctx => wasdInputManager = ctx.ReadValue<Vector2>();
         wasdInputManager = bikeGroundControlsActions.Movement.ReadValue<Vector2>();
         cameraControlsActions.MouseX.performed += ctx => mouseInputManager.x = ctx.ReadValue<float>();
         cameraControlsActions.MouseY.performed += ctx => mouseInputManager.y = ctx.ReadValue<float>();

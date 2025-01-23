@@ -367,7 +367,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 64
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &813631726786793354
 MonoBehaviour:
@@ -389,7 +389,7 @@ MonoBehaviour:
   onRail: 0
   grindSpeed: 9
   heightOffset: 0.75
-  lerpSpeed: 5
+  lerpSpeed: 20
   railGrindScript: {fileID: 0}
   jumpHeight: 20
   groundMask:
@@ -428,7 +428,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 4919267654044549254}
   barSpin: {fileID: 4938941019421720142}
   tireTap180: {fileID: 8845977071483293252}
-  tailWhip: {fileID: 0}
+  tailWhip: {fileID: 4465012668790154650}
   supermanKick: {fileID: 8793702019530231867}
   railTrick1: {fileID: 0}
   railTrick2: {fileID: 0}
@@ -1886,17 +1886,10 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 12a120ff06a13cb4f8f56db36370e1f9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4ae69688b1382b347a61f438530f1248, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 12a120ff06a13cb4f8f56db36370e1f9, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Male Sitting
-        Pose'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6000407479487422213, guid: 12a120ff06a13cb4f8f56db36370e1f9, type: 3}
       propertyPath: m_LocalPosition.x
