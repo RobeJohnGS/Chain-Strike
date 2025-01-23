@@ -7,6 +7,13 @@ public class PlayerControls : MonoBehaviour
     [Header("Components")]
     [SerializeField] GameObject cameraFollow;
     [SerializeField] Rigidbody rb;
+    public enum PlayerState
+    {
+        INAIR,
+        ONGROUND,
+        ONRAIL
+    }
+    public PlayerState playerState;
 
     [Header("Controls")]
     [SerializeField] float playerBikeSpeed;
@@ -41,6 +48,19 @@ public class PlayerControls : MonoBehaviour
 
     private void Update()
     {
+        if (isGrounded)
+        {
+            playerState = PlayerState.ONGROUND;
+        }
+        else if (!isGrounded && !onRail)
+        {
+            playerState = PlayerState.INAIR;
+        }
+        else if (onRail)
+        {
+            playerState = PlayerState.ONRAIL;
+        }
+
         //Creates a sphere at the bottom of the center of the bike, if it is overlapping with the ground, then you can jump.
         isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), 0.1f, groundMask);
         //Comment dude
@@ -194,6 +214,11 @@ public class PlayerControls : MonoBehaviour
                 elapsedTime -= Time.deltaTime;
             }
         }
+    }
+
+    public void SparkRail()
+    {
+        grindSpeed /= 2;
     }
 
     public void PauseGame()

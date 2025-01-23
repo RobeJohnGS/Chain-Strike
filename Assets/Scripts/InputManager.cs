@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerControls playerControls;
     [SerializeField] CameraControls cameraControls;
-    [SerializeField] ControlTrickScript trickControls;
+    [SerializeField] PlayerAnimationHandler trickControls;
 
     GameManagerScript gameManagerScript;
 
@@ -31,13 +31,9 @@ public class InputManager : MonoBehaviour
         //Pause input
         playerControlsActions.Pause.performed += _ => gameManagerScript.PauseGame();
         //Trick Inputs
+
         bikeGroundControlsActions.Trick1.performed += _ => trickControls.Trick1();
         bikeGroundControlsActions.Trick2.performed += _ => trickControls.Trick2();
-
-        foreach(var device in InputSystem.devices)
-        {
-            Debug.Log(device.ToString());
-        }
     }
 
     private void Update()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class ControlTrickScript : MonoBehaviour
+public class PlayerAnimationHandler : MonoBehaviour
 {
     [Header("Player Animation")]
     [SerializeField] Animator playerAnimator;
@@ -15,48 +15,33 @@ public class ControlTrickScript : MonoBehaviour
     //Air Trick 2
     [SerializeField] TrickScript supermanKick;
     //Rail Trick 1
-    [SerializeField] TrickScript railTrick1;
+    [SerializeField] TrickScript railSpark;
     //Rail Trick 2
     [SerializeField] TrickScript railTrick2;
 
     [Header("Player Attribues")]
     [SerializeField] PlayerControls playerControls;
-    public enum PlayerState
-    {
-        INAIR,
-        ONGROUND,
-        ONRAIL
-    }
-    public PlayerState playerState;
+    
 
     private void Update()
     {
-        if (playerControls.isGrounded)
-        {
-            playerState = PlayerState.ONGROUND;
-        }else if (!playerControls.isGrounded && !playerControls.onRail)
-        {
-            playerState = PlayerState.INAIR;
-        }
-        else if (playerControls.onRail) {
-            playerState = PlayerState.ONRAIL;
-        }
+        playerAnimator.SetBool("RailGrinding", playerControls.playerState == PlayerControls.PlayerState.ONRAIL);
     }
     //West Button
     public void Trick1()
     {
-        switch (playerState)
+        switch (playerControls.playerState)
         {
-            case PlayerState.INAIR:
+            case PlayerControls.PlayerState.INAIR:
                 playerAnimator.SetTrigger(tailWhip.trickData.trickParam);
                 Debug.Log("Air Trick1");
                 break;
-            case PlayerState.ONGROUND:
+            case PlayerControls.PlayerState.ONGROUND:
                 playerAnimator.SetTrigger(barSpin.trickData.trickParam);
                 Debug.Log("Ground Trick1");
                 break;
-            case PlayerState.ONRAIL:
-                playerAnimator.SetTrigger(railTrick1.trickData.trickParam);
+            case PlayerControls.PlayerState.ONRAIL:
+                playerAnimator.SetBool(railSpark.trickData.trickParam, true);
                 Debug.Log("Rail Trick1");
                 break;
         }
@@ -65,17 +50,17 @@ public class ControlTrickScript : MonoBehaviour
 
     public void Trick2()
     {
-        switch (playerState)
+        switch (playerControls.playerState)
         {
-            case PlayerState.INAIR:
+            case PlayerControls.PlayerState.INAIR:
                 playerAnimator.SetTrigger(supermanKick.trickData.trickParam);
                 Debug.Log("Air Trick2");
                 break;
-            case PlayerState.ONGROUND:
+            case PlayerControls.PlayerState.ONGROUND:
                 playerAnimator.SetTrigger(tireTap180.trickData.trickParam);
                 Debug.Log("Ground Trick2");
                 break;
-            case PlayerState.ONRAIL:
+            case PlayerControls.PlayerState.ONRAIL:
                 playerAnimator.SetTrigger(railTrick2.trickData.trickParam);
                 Debug.Log("Rail Trick2");
                 break;
