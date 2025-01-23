@@ -22,7 +22,7 @@ public class PlayerControls : MonoBehaviour
     float elapsedTime;
     [SerializeField] float lerpSpeed;
     [SerializeField] RailGrindScript railGrindScript;
-    
+
 
     [Header("Jumping")]
     [SerializeField] float jumpHeight;
@@ -60,7 +60,8 @@ public class PlayerControls : MonoBehaviour
          * The Vector input takes the direction the camera is looking (except the Y axis) and if the player is presssing W A S or D then it multiplies that input press with the bike speed and multiplies that by the camera direction to make the player go the way the camera is facing.
          * I did it this way because before it would see if the camera was facing up or down and try to force the player into the ground or air.
          */
-        if (canMove) { 
+        if (canMove)
+        {
             Vector3 pos = (new Vector3(cameraFollow.transform.forward.x, 0, cameraFollow.transform.forward.z) * wasdInput.y * playerBikeSpeed) + (new Vector3(cameraFollow.transform.right.x, 0, cameraFollow.transform.right.z) * wasdInput.x * playerBikeSpeed);
             //Takes the players position, adds the complicated vector and multiplies that by Time.deltaTime to move the bike.
             transform.position += pos * Time.deltaTime;
@@ -76,7 +77,8 @@ public class PlayerControls : MonoBehaviour
             if (isGrounded)
             {
                 rb.AddForce(Vector3.up * jumpHeight * 20, ForceMode.Impulse);
-            }else if (onRail)
+            }
+            else if (onRail)
             {
                 ExitOffRail();
                 rb.AddForce(Vector3.up * jumpHeight * 20, ForceMode.Impulse);

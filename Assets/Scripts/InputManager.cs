@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
 
     Vector2 wasdInputManager;
     Vector2 mouseInputManager;
-    
+
     private void Awake()
     {
         gameManagerScript = gameObject.GetComponent<GameManagerScript>();
@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
         cameraControlsActions = playerIA.CameraControls;
         playerControlsActions = playerIA.PlayerControls;
 
-        
+
         bikeGroundControlsActions.Jump.performed += _ => playerControls.OnJumpPressed();
         //Pause input
         playerControlsActions.Pause.performed += _ => gameManagerScript.PauseGame();
@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         bikeGroundControlsActions.Trick1.performed += _ => trickControls.Trick1();
         bikeGroundControlsActions.Trick2.performed += _ => trickControls.Trick2();
 
-        
+
     }
 
     private void Update()
