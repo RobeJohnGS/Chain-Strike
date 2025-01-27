@@ -17,11 +17,11 @@ public interface IEnemy
     //Current AI state
     EnemyState currentEnemyState { get; set; }
     //Transform of the player to follow
-    Transform playerTransform { get; }
+    GameObject playerObject { get; }
     //Deal damage to the player
     void DealDamage();
     //Take damage from the player
-    void TakeDamage(TrickScript trick);
+    void TakeDamage(TrickScript trick, float comboDmg);
 
     //Enemy Died
     void OnDeath();
