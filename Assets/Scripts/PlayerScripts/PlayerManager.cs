@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            ResetCombo();
+            ApplyComboScore();
         }
         //Check if the player health is at or below 0
         if (health <= 0)
@@ -62,16 +62,29 @@ public class PlayerManager : MonoBehaviour
 
     //The player has 1 second to do a trick in the time of the combo meter going down, once the meter goes down any multiplier or points they had will be added to their total points and a reduced number will be added to the damage multiplier. If the player gets hit while trying to start a combo chain, they will lose all points and mult in the combos, get nothing added to their score, and lose any damage they had.
 
-    public void AddToCombo(float points,  float mult)
+    public void AddToCombo(TrickScript trick)
     {
         comboTimer = comboLength;
-        comboMult += mult;
-        comboPoints += points;
+        if (comboDmg <= 0)
+        {
+            comboMult += trick.trickData.trickMult;
+            comboPoints += trick.trickData.trickPoints;
+        }
+        
     }
 
-    private void ResetCombo()
+    public float DealComboDamage()
     {
-        if (comboPoints > 0 || comboMult > 0)
+        if (comboDmg > 0)
+        {
+            return comboDmg;
+        }
+        return 0f;
+    }
+
+    private void ApplyComboScore()
+    {
+        if ((comboPoints > 0 || comboMult > 0) && comboDmg <= 0)
         {
             //If the player had any points or mult, add it to score and damage multiplier.
             points += (comboPoints * comboMult);

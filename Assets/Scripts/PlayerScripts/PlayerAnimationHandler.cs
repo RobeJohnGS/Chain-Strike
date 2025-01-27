@@ -37,12 +37,12 @@ public class PlayerAnimationHandler : MonoBehaviour
         {
             case PlayerControls.PlayerState.INAIR:
                 playerAnimator.SetTrigger(tailWhip.trickData.trickParam);
-                playerManager.AddToCombo(tailWhip.trickData.trickPoints, tailWhip.trickData.trickMult);
+                playerManager.AddToCombo(tailWhip);
                 Debug.Log("Air Trick1");
                 break;
             case PlayerControls.PlayerState.ONGROUND:
                 playerAnimator.SetTrigger(barSpin.trickData.trickParam);
-                playerManager.AddToCombo(barSpin.trickData.trickPoints, barSpin.trickData.trickMult);
+                playerManager.AddToCombo(barSpin);
                 Debug.Log("Ground Trick1");
                 break;
         }
@@ -71,12 +71,12 @@ public class PlayerAnimationHandler : MonoBehaviour
         {
             case PlayerControls.PlayerState.INAIR:
                 playerAnimator.SetTrigger(supermanKick.trickData.trickParam);
-                playerManager.AddToCombo(supermanKick.trickData.trickPoints, supermanKick.trickData.trickMult);
+                playerManager.AddToCombo(supermanKick);
                 Debug.Log("Air Trick2");
                 break;
             case PlayerControls.PlayerState.ONGROUND:
                 playerAnimator.SetTrigger(tireTap180.trickData.trickParam);
-                playerManager.AddToCombo(tireTap180.trickData.trickPoints, tireTap180.trickData.trickMult);
+                playerManager.AddToCombo(tireTap180);
                 Debug.Log("Ground Trick2");
                 break;
             case PlayerControls.PlayerState.ONRAIL:
