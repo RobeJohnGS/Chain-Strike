@@ -167,6 +167,7 @@ Transform:
   - {fileID: 7249941918481253029}
   - {fileID: 8358422400890541129}
   - {fileID: 875227269168852884}
+  - {fileID: 4461616600769684181}
   m_Father: {fileID: 4121173626869854161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3713223551874758311
@@ -236,6 +237,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trickData: {fileID: 11400000, guid: b5922b6bf0a5f8c40976fd50866076ed, type: 2}
+--- !u!1 &4647797635815568393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4461616600769684181}
+  - component: {fileID: 2757601339334348979}
+  - component: {fileID: 3201777201605732980}
+  m_Layer: 0
+  m_Name: RailSparkHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4461616600769684181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647797635815568393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3179759646728229567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2757601339334348979
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647797635815568393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3201777201605732980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647797635815568393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4620edffbf722042873385d0c458921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trickData: {fileID: 11400000, guid: 9100e7b1c6a4dac40b8444cbbbeef699, type: 2}
 --- !u!1 &4658830356097568814
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 0}
   rb: {fileID: 356485404783219562}
+  playerState: 0
   playerBikeSpeed: 8
   playerBikeRotRate: 3
   canMove: 1
@@ -391,6 +460,7 @@ MonoBehaviour:
   heightOffset: 0.75
   lerpSpeed: 20
   railGrindScript: {fileID: 0}
+  railSpark: 0
   jumpHeight: 20
   groundMask:
     serializedVersion: 2
@@ -430,10 +500,9 @@ MonoBehaviour:
   tireTap180: {fileID: 8845977071483293252}
   tailWhip: {fileID: 4465012668790154650}
   supermanKick: {fileID: 8793702019530231867}
-  railTrick1: {fileID: 0}
+  railSpark: {fileID: 3201777201605732980}
   railTrick2: {fileID: 0}
   playerControls: {fileID: 813631726786793354}
-  playerState: 0
 --- !u!65 &8960348042418838517
 BoxCollider:
   m_ObjectHideFlags: 0
