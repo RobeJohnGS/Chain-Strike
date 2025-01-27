@@ -41,6 +41,7 @@ public class InputManager : MonoBehaviour
         wasdInputManager = bikeGroundControlsActions.Movement.ReadValue<Vector2>();
         cameraControlsActions.MouseX.performed += ctx => mouseInputManager.x = ctx.ReadValue<float>();
         cameraControlsActions.MouseY.performed += ctx => mouseInputManager.y = ctx.ReadValue<float>();
+        trickControls.RailTrick1(bikeGroundControlsActions.Trick1.IsPressed());
         playerControls.RecieveInput(wasdInputManager);
         cameraControls.RecieveInput(mouseInputManager);
         //playerControls.ChangePlayerRotation(cameraControls.cameraFollow.transform.rotation.eulerAngles.y);

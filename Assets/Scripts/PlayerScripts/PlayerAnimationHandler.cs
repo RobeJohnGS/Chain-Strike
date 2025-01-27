@@ -16,6 +16,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     [SerializeField] TrickScript supermanKick;
     //Rail Trick 1
     [SerializeField] TrickScript railSpark;
+    private bool railSparkPressed;
     //Rail Trick 2
     [SerializeField] TrickScript railTrick2;
 
@@ -25,7 +26,8 @@ public class PlayerAnimationHandler : MonoBehaviour
 
     private void Update()
     {
-        playerAnimator.SetBool("RailGrinding", playerControls.playerState == PlayerControls.PlayerState.ONRAIL);
+        //If the player is on a rail and not using the Rail Spark trick, then use the rail grinding animation
+        playerAnimator.SetBool("RailGrinding", playerControls.playerState == PlayerControls.PlayerState.ONRAIL && !railSparkPressed);
     }
     //West Button
     public void Trick1()
@@ -40,12 +42,25 @@ public class PlayerAnimationHandler : MonoBehaviour
                 playerAnimator.SetTrigger(barSpin.trickData.trickParam);
                 Debug.Log("Ground Trick1");
                 break;
-            case PlayerControls.PlayerState.ONRAIL:
-                playerAnimator.SetBool(railSpark.trickData.trickParam, true);
-                Debug.Log("Rail Trick1");
-                break;
         }
         
+    }
+
+    //Function for as long as the Trick 1 button is pressed, continue doing the Rail Spark Trick
+    public void RailTrick1(bool isPressed)
+    {
+        //Bool to keep track if the trick 1 button is being held and the player is on a rail
+        bool btnPressedAndOnRail = isPressed && playerControls.playerState == PlayerControls.PlayerState.ONRAIL;
+        //Set the rail spark animation parameter to true or false, based on the previous bool.
+        playerAnimator.SetBool(railSpark.trickData.trickParam, btnPressedAndOnRail);
+        //Set the bool to also reflect if the Trick 1 button is being held and the players on the rail.
+        railSparkPressed = btnPressedAndOnRail;
+        //If the hitbox's parent is the bike like normal, then it would rotate with the animation, so I set the hitbox parent to the player
+        railSpark.gameObject.transform.parent = playerControls.gameObject.transform;
+        //Sets the hitbox active
+        railSpark.gameObject.SetActive(btnPressedAndOnRail);
+        Debug.Log("Rail Trick1");
+
     }
 
     public void Trick2()
@@ -61,8 +76,12 @@ public class PlayerAnimationHandler : MonoBehaviour
                 Debug.Log("Ground Trick2");
                 break;
             case PlayerControls.PlayerState.ONRAIL:
-                playerAnimator.SetTrigger(railTrick2.trickData.trickParam);
-                Debug.Log("Rail Trick2");
+                //The player can only do this trick if they are not rail sparking
+                if (!railSparkPressed)
+                {
+                    playerAnimator.SetTrigger(railTrick2.trickData.trickParam);
+                    Debug.Log("Rail Trick2");
+                }
                 break;
         }
 

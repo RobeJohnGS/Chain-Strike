@@ -29,6 +29,7 @@ public class PlayerControls : MonoBehaviour
     float elapsedTime;
     [SerializeField] float lerpSpeed;
     [SerializeField] RailGrindScript railGrindScript;
+    public bool railSpark;
 
 
     [Header("Jumping")]
