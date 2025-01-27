@@ -149,6 +149,7 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    #region RAILS
     private void CalculateAndSetRailPosition()
     {
         timeForFullSpline = railGrindScript.totalSplineLength / grindSpeed;
@@ -216,11 +217,7 @@ public class PlayerControls : MonoBehaviour
             }
         }
     }
-
-    public void SparkRail()
-    {
-        grindSpeed /= 2;
-    }
+    #endregion
 
     public void PauseGame()
     {

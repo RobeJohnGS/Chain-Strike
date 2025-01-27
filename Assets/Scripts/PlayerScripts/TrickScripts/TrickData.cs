@@ -7,6 +7,10 @@ public class TrickData : ScriptableObject
     public float trickDmg;
     //Tricks base damage before the player's trick multiplier.
     public float trickBaseDmg;
+    //Trick point value
+    public float trickPoints;
+    //Trick mult value
+    public float trickMult;
     //Trick knockback applied to the enemy.
     public float trickKnockback;
     //Trick animation parameter name

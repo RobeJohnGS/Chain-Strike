@@ -14,6 +14,8 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
 
     public Transform playerTransform => GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
+    public float attackCD { get; set; } = 1.5f;
+
     private void Update()
     {
         //Look at the player
@@ -28,11 +30,17 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         {
             currentEnemyState = IEnemy.EnemyState.CHASE;
         }
+        
+        //Attack cooldown
+        attackCD -= Time.deltaTime;
 
         switch (currentEnemyState)
         {
             case IEnemy.EnemyState.ATTACK:
-                DealDamage();
+                if (attackCD <= 0)
+                {
+                    DealDamage();
+                }
                 break;
 
             case IEnemy.EnemyState.CHASE:
@@ -56,7 +64,9 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
 
     public void DealDamage()
     {
+        playerTransform.gameObject.GetComponent<PlayerManager>().OnTakeDamage(damageValue);
         Debug.Log("Dealt: " + damageValue + " damage");
+        attackCD = 1.5f;
     }
 
     public float GetHealth()
@@ -79,7 +89,7 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
     {
         SetHealth(health - trick.trickData.trickDmg);
         Vector3 knockbackDir = gameObject.transform.position - playerTransform.position;
-        gameObject.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * (-trick.trickData.trickKnockback * 25), ForceMode.Impulse);
+        gameObject.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * trick.trickData.trickKnockback, ForceMode.Impulse);
         Debug.Log("Took " + trick.trickData.trickDmg + " damage");
     }
     private void OnDrawGizmos()

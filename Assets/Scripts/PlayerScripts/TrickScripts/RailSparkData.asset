@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickDmg: 1
   trickBaseDmg: 1
+  trickPoints: 10
+  trickMult: 0.1
   trickKnockback: 0
   trickParam: RailSpark

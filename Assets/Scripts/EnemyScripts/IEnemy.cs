@@ -8,6 +8,8 @@ public interface IEnemy
     float moveSpeed { get; }
     //Enemy damage
     float damageValue { get;}
+    //Attack Cooldown
+    float attackCD { get; set; }
     //Damage Range
     float damageRange { get; set; }
     //AI states enum

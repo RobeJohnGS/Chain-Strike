@@ -15,6 +15,8 @@ public class DummyEnemy : MonoBehaviour, IEnemy
 
     public float moveSpeed => 3f;
 
+    public float attackCD { get; set; } = 100000f;
+
     private void Update()
     {
         //Look at the player

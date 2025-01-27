@@ -22,6 +22,7 @@ public class PlayerAnimationHandler : MonoBehaviour
 
     [Header("Player Attribues")]
     [SerializeField] PlayerControls playerControls;
+    [SerializeField] PlayerManager playerManager;
     
 
     private void Update()
@@ -36,10 +37,12 @@ public class PlayerAnimationHandler : MonoBehaviour
         {
             case PlayerControls.PlayerState.INAIR:
                 playerAnimator.SetTrigger(tailWhip.trickData.trickParam);
+                playerManager.AddToCombo(tailWhip.trickData.trickPoints, tailWhip.trickData.trickMult);
                 Debug.Log("Air Trick1");
                 break;
             case PlayerControls.PlayerState.ONGROUND:
                 playerAnimator.SetTrigger(barSpin.trickData.trickParam);
+                playerManager.AddToCombo(barSpin.trickData.trickPoints, barSpin.trickData.trickMult);
                 Debug.Log("Ground Trick1");
                 break;
         }
@@ -59,7 +62,6 @@ public class PlayerAnimationHandler : MonoBehaviour
         railSpark.gameObject.transform.parent = playerControls.gameObject.transform;
         //Sets the hitbox active
         railSpark.gameObject.SetActive(btnPressedAndOnRail);
-        Debug.Log("Rail Trick1");
 
     }
 
@@ -69,10 +71,12 @@ public class PlayerAnimationHandler : MonoBehaviour
         {
             case PlayerControls.PlayerState.INAIR:
                 playerAnimator.SetTrigger(supermanKick.trickData.trickParam);
+                playerManager.AddToCombo(supermanKick.trickData.trickPoints, supermanKick.trickData.trickMult);
                 Debug.Log("Air Trick2");
                 break;
             case PlayerControls.PlayerState.ONGROUND:
                 playerAnimator.SetTrigger(tireTap180.trickData.trickParam);
+                playerManager.AddToCombo(tireTap180.trickData.trickPoints, tireTap180.trickData.trickMult);
                 Debug.Log("Ground Trick2");
                 break;
             case PlayerControls.PlayerState.ONRAIL:
