@@ -59,7 +59,7 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         if (other.gameObject.CompareTag("PlayerDamageHB"))
         {
             TakeDamage(other.gameObject.GetComponent<TrickScript>(), playerObject.GetComponent<PlayerManager>().comboDmg);
-            playerObject.GetComponent<PlayerManager>().comboDmg = 0;
+            playerObject.GetComponent<PlayerManager>().ResetComboScore(0f);
         }
     }
 
