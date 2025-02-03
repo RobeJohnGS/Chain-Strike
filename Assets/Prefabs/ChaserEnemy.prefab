@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6256344115850496809}
   - component: {fileID: 7515707019160136257}
+  - component: {fileID: 8528549077537716624}
   - component: {fileID: 657095549007133794}
   - component: {fileID: 2305430152496941086}
+  - component: {fileID: 637678336743533368}
   m_Layer: 0
   m_Name: ChaserEnemy
   m_TagString: Enemy
@@ -47,6 +49,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c3d2d5f969556458e3245ca708b173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8528549077537716624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792987947752033904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72b9dca458c07b488cd95271fcb9935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 637678336743533368}
 --- !u!54 &657095549007133794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,6 +112,28 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &637678336743533368
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792987947752033904}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0790eb0738c12d74e96ef47f8e7d5d1e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3759934030068608671
 GameObject:
   m_ObjectHideFlags: 0

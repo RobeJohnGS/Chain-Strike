@@ -12,9 +12,16 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
     public float damageRange { get; set; } = 2f;
     public IEnemy.EnemyState currentEnemyState { get; set; } = IEnemy.EnemyState.CHASE;
 
+    public ChaserAnimationHandler chaserAnimationHandler { get; set; }
+
     public GameObject playerObject => GameObject.FindGameObjectWithTag("Player");
 
     public float attackCD { get; set; } = 1.5f;
+
+    private void Awake()
+    {
+        chaserAnimationHandler = gameObject.GetComponent<ChaserAnimationHandler>();
+    }
 
     private void Update()
     {
@@ -39,7 +46,7 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
             case IEnemy.EnemyState.ATTACK:
                 if (attackCD <= 0)
                 {
-                    DealDamage();
+                    chaserAnimationHandler.AttackAnimation();
                 }
                 break;
 
@@ -59,14 +66,13 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         if (other.gameObject.CompareTag("PlayerDamageHB"))
         {
             TakeDamage(other.gameObject.GetComponent<TrickScript>(), playerObject.GetComponent<PlayerManager>().comboDmg);
-            playerObject.GetComponent<PlayerManager>().OnDealDamage();
+            playerObject.GetComponent<PlayerManager>().ResetComboScore(0f);
         }
     }
 
     public void DealDamage()
     {
         playerObject.GetComponent<PlayerManager>().OnTakeDamage(damageValue);
-        Debug.Log("Dealt: " + damageValue + " damage");
         attackCD = 1.5f;
     }
 

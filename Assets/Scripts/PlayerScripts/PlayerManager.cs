@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -87,14 +88,6 @@ public class PlayerManager : MonoBehaviour
             takeDmgCDTimer = takeDmgCD;
             //Health Text UI Element Update
             healthTxt.text = Mathf.Floor(health).ToString(); ;
-        }
-    }
-
-    public void OnDealDamage()
-    {
-        while (!gameObject.GetComponent<PlayerAnimationHandler>().animationPlaying)
-        {
-            ResetComboScore(0f);
         }
     }
 
