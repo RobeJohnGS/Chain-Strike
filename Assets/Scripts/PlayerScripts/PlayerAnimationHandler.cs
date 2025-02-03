@@ -5,6 +5,7 @@ public class PlayerAnimationHandler : MonoBehaviour
 {
     [Header("Player Animation")]
     [SerializeField] Animator playerAnimator;
+    public bool animationPlaying;
     [Header("Tricks")]
     //Ground Trick 1
     [SerializeField] TrickScript barSpin;
@@ -33,18 +34,21 @@ public class PlayerAnimationHandler : MonoBehaviour
     //West Button
     public void Trick1()
     {
-        switch (playerControls.playerState)
+        if (!animationPlaying)
         {
-            case PlayerControls.PlayerState.INAIR:
-                playerAnimator.SetTrigger(tailWhip.trickData.trickParam);
-                playerManager.AddToCombo(tailWhip);
-                Debug.Log("Air Trick1");
-                break;
-            case PlayerControls.PlayerState.ONGROUND:
-                playerAnimator.SetTrigger(barSpin.trickData.trickParam);
-                playerManager.AddToCombo(barSpin);
-                Debug.Log("Ground Trick1");
-                break;
+            switch (playerControls.playerState)
+            {
+                case PlayerControls.PlayerState.INAIR:
+                    playerAnimator.SetTrigger(tailWhip.trickData.trickParam);
+                    playerManager.AddToCombo(tailWhip);
+                    Debug.Log("Air Trick1");
+                    break;
+                case PlayerControls.PlayerState.ONGROUND:
+                    playerAnimator.SetTrigger(barSpin.trickData.trickParam);
+                    playerManager.AddToCombo(barSpin);
+                    Debug.Log("Ground Trick1");
+                    break;
+            }
         }
         
     }
@@ -67,27 +71,29 @@ public class PlayerAnimationHandler : MonoBehaviour
 
     public void Trick2()
     {
-        switch (playerControls.playerState)
+        if (!animationPlaying)
         {
-            case PlayerControls.PlayerState.INAIR:
-                playerAnimator.SetTrigger(supermanKick.trickData.trickParam);
-                playerManager.AddToCombo(supermanKick);
-                Debug.Log("Air Trick2");
-                break;
-            case PlayerControls.PlayerState.ONGROUND:
-                playerAnimator.SetTrigger(tireTap180.trickData.trickParam);
-                playerManager.AddToCombo(tireTap180);
-                Debug.Log("Ground Trick2");
-                break;
-            case PlayerControls.PlayerState.ONRAIL:
-                //The player can only do this trick if they are not rail sparking
-                if (!railSparkPressed)
-                {
-                    playerAnimator.SetTrigger(railTrick2.trickData.trickParam);
-                    Debug.Log("Rail Trick2");
-                }
-                break;
+            switch (playerControls.playerState)
+            {
+                case PlayerControls.PlayerState.INAIR:
+                    playerAnimator.SetTrigger(supermanKick.trickData.trickParam);
+                    playerManager.AddToCombo(supermanKick);
+                    Debug.Log("Air Trick2");
+                    break;
+                case PlayerControls.PlayerState.ONGROUND:
+                    playerAnimator.SetTrigger(tireTap180.trickData.trickParam);
+                    playerManager.AddToCombo(tireTap180);
+                    Debug.Log("Ground Trick2");
+                    break;
+                case PlayerControls.PlayerState.ONRAIL:
+                    //The player can only do this trick if they are not rail sparking
+                    if (!railSparkPressed)
+                    {
+                        playerAnimator.SetTrigger(railTrick2.trickData.trickParam);
+                        Debug.Log("Rail Trick2");
+                    }
+                    break;
+            }
         }
-
     }
 }

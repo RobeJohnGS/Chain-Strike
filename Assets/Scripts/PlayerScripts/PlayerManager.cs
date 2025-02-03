@@ -35,7 +35,12 @@ public class PlayerManager : MonoBehaviour
     [Header("UI Attributes")]
     [SerializeField] Image comboMeter;
     [SerializeField] TMP_Text comboMeterText;
-    [SerializeField] TMP_Text debugTxt;
+    [SerializeField] TMP_Text healthTxt;
+
+    private void Awake()
+    {
+        healthTxt.text = health.ToString();
+    }
 
     private void Update()
     {
@@ -67,9 +72,6 @@ public class PlayerManager : MonoBehaviour
         comboMeter.fillAmount = comboTimer / comboLength;
         //Display combo points and combo mult
         comboMeterText.text = comboPoints + " X " + comboMult;
-
-        //Debugging the combo dmg
-        debugTxt.text = comboDmg.ToString();
     }
 
     //Player takes damage
@@ -83,6 +85,16 @@ public class PlayerManager : MonoBehaviour
             //Reset combo attributes if the player has taken damage
             ResetComboScore(0f);
             takeDmgCDTimer = takeDmgCD;
+            //Health Text UI Element Update
+            healthTxt.text = Mathf.Floor(health).ToString(); ;
+        }
+    }
+
+    public void OnDealDamage()
+    {
+        while (!gameObject.GetComponent<PlayerAnimationHandler>().animationPlaying)
+        {
+            ResetComboScore(0f);
         }
     }
 

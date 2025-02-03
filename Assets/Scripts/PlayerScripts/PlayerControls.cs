@@ -30,6 +30,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float lerpSpeed;
     [SerializeField] RailGrindScript railGrindScript;
     public bool railSpark;
+    [SerializeField] float railCD;
 
 
     [Header("Jumping")]
@@ -77,6 +78,18 @@ public class PlayerControls : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
+
+        //Switch Case for action specific to each player state
+        switch (playerState)
+        {
+            case PlayerState.ONGROUND:
+                break;
+            case PlayerState.INAIR:
+                break;
+            case PlayerState.ONRAIL:
+                break;
+        }
+        railCD -= Time.deltaTime;
         /*Creates a vector 3 to move the player with these properites
          * The Vector input takes the direction the camera is looking (except the Y axis) and if the player is presssing W A S or D then it multiplies that input press with the bike speed and multiplies that by the camera direction to make the player go the way the camera is facing.
          * I did it this way because before it would see if the camera was facing up or down and try to force the player into the ground or air.
@@ -143,9 +156,12 @@ public class PlayerControls : MonoBehaviour
     {
         if (other.gameObject.tag == "Rail")
         {
-            onRail = true;
-            railGrindScript = other.gameObject.GetComponent<RailGrindScript>();
-            CalculateAndSetRailPosition();
+            if (railCD <= 0)
+            {
+                onRail = true;
+                railGrindScript = other.gameObject.GetComponent<RailGrindScript>();
+                CalculateAndSetRailPosition();
+            }
         }
     }
 
@@ -171,6 +187,7 @@ public class PlayerControls : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
         transform.position += transform.forward * 1;
+        railCD = 0.5f;
     }
 
     private void MovePlayerAlongRail()
