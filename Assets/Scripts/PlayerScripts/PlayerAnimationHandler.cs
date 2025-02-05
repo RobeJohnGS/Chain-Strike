@@ -15,12 +15,14 @@ public class PlayerAnimationHandler : MonoBehaviour
     [SerializeField] TrickScript tailWhip;
     //Air Trick 2
     [SerializeField] TrickScript supermanKick;
+    //Rail grinding bool
+    [SerializeField] bool railGrinding;
     //Rail Trick 1
     [SerializeField] TrickScript railSpark;
     private bool railSparkPressed;
     //Rail Trick 2
     [SerializeField] TrickScript toothpick;
-    private bool toothpickPressed;
+    public bool toothpickPressed;
 
     [Header("Player Attribues")]
     [SerializeField] PlayerControls playerControls;
@@ -29,8 +31,10 @@ public class PlayerAnimationHandler : MonoBehaviour
 
     private void Update()
     {
+        railGrinding = playerControls.playerState == PlayerControls.PlayerState.ONRAIL && (!railSparkPressed || !toothpickPressed);
+        Debug.Log("On rail? " + (playerControls.playerState == PlayerControls.PlayerState.ONRAIL) + "\n" + "Rail sparking? " + railSparkPressed + "\n Toothpick pressed? " + toothpickPressed);
         //If the player is on a rail and not using the Rail Spark trick, then use the rail grinding animation
-        playerAnimator.SetBool("RailGrinding", playerControls.playerState == PlayerControls.PlayerState.ONRAIL && !railSparkPressed && !animationPlaying);
+        playerAnimator.SetBool("RailGrinding", railGrinding);
     }
     //West Button
     public void Trick1()
@@ -91,6 +95,7 @@ public class PlayerAnimationHandler : MonoBehaviour
                     if (!railSparkPressed)
                     {
                         playerAnimator.SetTrigger(toothpick.trickData.trickParam);
+                        playerManager.AddToCombo(toothpick);
                         Debug.Log("Rail Trick2");
                     }
                     break;

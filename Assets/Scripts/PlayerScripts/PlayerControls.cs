@@ -18,6 +18,7 @@ public class PlayerControls : MonoBehaviour
     [Header("Controls")]
     [SerializeField] float playerBikeSpeed;
     [SerializeField] float playerBikeRotRate;
+    private float currentPlayerBikeRotRate;
     Vector2 wasdInput;
     [SerializeField] public bool canMove;
 
@@ -83,8 +84,11 @@ public class PlayerControls : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.ONGROUND:
+                currentPlayerBikeRotRate = playerBikeRotRate;
                 break;
             case PlayerState.INAIR:
+                //If the player is in the air I want it to be harder to turn the bike
+                currentPlayerBikeRotRate = playerBikeRotRate / 2;
                 break;
             case PlayerState.ONRAIL:
                 break;
@@ -147,7 +151,7 @@ public class PlayerControls : MonoBehaviour
         {
             float rotAngle = Mathf.Atan2(newDir.x, newDir.z) * Mathf.Rad2Deg;
             Quaternion targetRot = Quaternion.Euler(0, rotAngle, 0);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * playerBikeRotRate);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * currentPlayerBikeRotRate);
         }
     }
 
