@@ -68,7 +68,7 @@ public class PlayerAnimationHandler : MonoBehaviour
         //Set the bool to also reflect if the Trick 1 button is being held and the players on the rail.
         railSparkPressed = btnPressedAndOnRail;
         //If the hitbox's parent is the bike like normal, then it would rotate with the animation, so I set the hitbox parent to the player
-        railSpark.gameObject.transform.parent = playerControls.gameObject.transform;
+        //railSpark.gameObject.transform.parent = playerControls.gameObject.transform;
         //Sets the hitbox active
         railSpark.gameObject.SetActive(btnPressedAndOnRail);
 

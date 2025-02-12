@@ -168,6 +168,7 @@ Transform:
   - {fileID: 8358422400890541129}
   - {fileID: 875227269168852884}
   - {fileID: 4461616600769684181}
+  - {fileID: 1952378634134700368}
   m_Father: {fileID: 4121173626869854161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3713223551874758311
@@ -381,6 +382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084620449287419507}
   - component: {fileID: 356485404783219562}
+  - component: {fileID: 1222704080993359081}
   - component: {fileID: 813631726786793354}
   - component: {fileID: 7760433651498053645}
   - component: {fileID: 7927215635768524678}
@@ -437,6 +439,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &1222704080993359081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982457890826122814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2951a0e7cb5d8b843a73269115595b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  points: 0
+  takeDmgCD: 1.5
+  comboLength: 2
+  comboDmg: 0
+  comboPoints: 0
+  comboMult: 0
+  comboMeter: {fileID: 0}
+  comboMeterText: {fileID: 0}
+  healthTxt: {fileID: 0}
 --- !u!114 &813631726786793354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +485,7 @@ MonoBehaviour:
   lerpSpeed: 20
   railGrindScript: {fileID: 0}
   railSpark: 0
+  railCD: 0
   jumpHeight: 20
   groundMask:
     serializedVersion: 2
@@ -496,13 +521,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 4919267654044549254}
+  animationPlaying: 0
   barSpin: {fileID: 4938941019421720142}
   tireTap180: {fileID: 8845977071483293252}
   tailWhip: {fileID: 4465012668790154650}
   supermanKick: {fileID: 8793702019530231867}
+  railGrinding: 0
   railSpark: {fileID: 3201777201605732980}
-  railTrick2: {fileID: 0}
+  toothpick: {fileID: 5215742501602591273}
+  toothpickPressed: 0
   playerControls: {fileID: 813631726786793354}
+  playerManager: {fileID: 1222704080993359081}
 --- !u!65 &8960348042418838517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -546,6 +575,73 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6003909003411157660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952378634134700368}
+  - component: {fileID: 5215742501602591273}
+  - component: {fileID: 2151872745363709430}
+  m_Layer: 0
+  m_Name: ToothpickHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1952378634134700368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003909003411157660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3179759646728229567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5215742501602591273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003909003411157660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4620edffbf722042873385d0c458921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trickData: {fileID: 11400000, guid: cb4161b3d28642141a085147fa94c45c, type: 2}
+--- !u!135 &2151872745363709430
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003909003411157660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0, z: -0.57}
 --- !u!1001 &1342598041405071977
 PrefabInstance:
   m_ObjectHideFlags: 0
