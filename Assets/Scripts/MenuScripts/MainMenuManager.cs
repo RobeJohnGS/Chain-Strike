@@ -2,16 +2,20 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
+using Cinemachine;
+using System.Linq;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] Animator menuAnimator;
     [SerializeField] CurrentMenu currentMenu;
+    [Header("Cameras")]
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject customizeCamera;
     [Header("UI Elements")]
-    /*
-     * UI Element 0: Click to continue text
-     * UI Element 1: Main menu buttons
-     */
-    [SerializeField] GameObject[] uiElements;
+    [SerializeField] GameObject clickToContinueTxt;
+    [SerializeField] GameObject mainMenuButtons;
+    [SerializeField] GameObject customizeCharacterMenu;
     enum CurrentMenu
     {
         clickToStart,
@@ -33,11 +37,9 @@ public class MainMenuManager : MonoBehaviour
             case CurrentMenu.clickToStart:
                 if (Input.anyKeyDown)
                 {
-                    currentMenu = CurrentMenu.menuSelection;
-                    //Disable the click to continue text
-                    EnableUIElement(uiElements[0], false);
-                    //Enable the main buttons game object
-                    EnableUIElement(uiElements[1], true);
+                    //Switch to menuSelection menu
+                    SwitchMenu(1);
+                    
                 }
                 break;
         }
@@ -45,7 +47,30 @@ public class MainMenuManager : MonoBehaviour
 
     public void SwitchMenu(int newMenu)
     {
+        //Switch to the new menu using ints
         currentMenu = (CurrentMenu)newMenu;
+
+        switch (currentMenu)
+        {
+            case CurrentMenu.clickToStart:
+                
+                break;
+            case CurrentMenu.levelSelect:
+
+                break;
+            case CurrentMenu.customize:
+
+                break;
+            case CurrentMenu.settings:
+
+                break;
+        }
+    }
+
+    private void SelectCustomizeCharacter()
+    {
+        currentMenu = CurrentMenu.customize;
+        EnableUIElement(customizeCharacterMenu, true);
     }
 
     private void EnableUIElement(GameObject uiOb, bool enable)
