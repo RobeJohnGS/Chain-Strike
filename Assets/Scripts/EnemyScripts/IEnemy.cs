@@ -8,6 +8,8 @@ public interface IEnemy
     float moveSpeed { get; }
     //Enemy damage
     float damageValue { get;}
+    //Attack Cooldown
+    float attackCD { get; set; }
     //Damage Range
     float damageRange { get; set; }
     //AI states enum
@@ -15,11 +17,11 @@ public interface IEnemy
     //Current AI state
     EnemyState currentEnemyState { get; set; }
     //Transform of the player to follow
-    Transform playerTransform { get; }
+    GameObject playerObject { get; }
     //Deal damage to the player
     void DealDamage();
     //Take damage from the player
-    void TakeDamage(TrickScript trick);
+    void TakeDamage(TrickScript trick, float comboDmg);
 
     //Enemy Died
     void OnDeath();

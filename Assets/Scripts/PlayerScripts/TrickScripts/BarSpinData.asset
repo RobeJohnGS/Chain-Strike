@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickDmg: 2
   trickBaseDmg: 2
-  trickKnockback: 10
+  trickPoints: 200
+  trickMult: 0.5
+  trickKnockback: 2
   trickParam: BarSpin

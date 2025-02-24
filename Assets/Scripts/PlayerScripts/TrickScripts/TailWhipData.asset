@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickDmg: 3
   trickBaseDmg: 3
+  trickPoints: 300
+  trickMult: 1.5
   trickKnockback: 2
   trickParam: TailWhip

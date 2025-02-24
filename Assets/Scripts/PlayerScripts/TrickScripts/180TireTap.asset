@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickDmg: 5
   trickBaseDmg: 5
-  trickKnockback: 5
+  trickPoints: 400
+  trickMult: 2
+  trickKnockback: 7
   trickParam: 180TireTap

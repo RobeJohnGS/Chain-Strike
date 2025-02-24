@@ -19,9 +19,9 @@ public class RailGrindScript : MonoBehaviour
     {
         railSpline = GetComponent<SplineContainer>();
         totalSplineLength = railSpline.CalculateLength();
-        boxCollider = GetComponent<BoxCollider>();
-        boxCollider.center = Vector3.forward * (totalSplineLength / 2);
-        boxCollider.size = Vector3.forward * totalSplineLength;
+        //boxCollider = GetComponent<BoxCollider>();
+        //boxCollider.center = Vector3.forward * (totalSplineLength / 2);
+        //boxCollider.size = Vector3.forward * totalSplineLength;
     }
 
     public Vector3 LocalToWorldConversion(float3 localPoint)
