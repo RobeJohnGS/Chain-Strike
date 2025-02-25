@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject clickToContinueTxt;
     [SerializeField] GameObject mainMenuButtons;
     [SerializeField] GameObject customizeCharacterMenu;
+    [SerializeField] GameObject lvlSelectMenu;
     enum CurrentMenu
     {
         clickToStart,
@@ -38,6 +39,7 @@ public class MainMenuManager : MonoBehaviour
                 if (Input.anyKeyDown)
                 {
                     //Switch to menuSelection menu
+                    Debug.Log("Start Game");
                     SwitchMenu(1);
                     
                 }
@@ -57,6 +59,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void SwitchMenu(int newMenu)
     {
+        //Disables all menus in the scene
+        DisableMenus();
         //Switch to the new menu using ints
         currentMenu = (CurrentMenu)newMenu;
         Debug.Log("Switching to " + (CurrentMenu)newMenu + " menu");
@@ -67,8 +71,8 @@ public class MainMenuManager : MonoBehaviour
                 //Shouldn't be switching to this menu
                 break;
             case CurrentMenu.menuSelection:
-                //Disables the click to continue text
-                clickToContinueTxt.SetActive(false);
+                //Switches the camera if needed
+                SwitchCamera(0);
                 //enables the main menu buttons
                 mainMenuButtons.SetActive(true);
                 //Starts the main menu button animation
@@ -76,6 +80,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
             case CurrentMenu.levelSelect:
                 SwitchCamera(1);
+                lvlSelectMenu.SetActive(true);
                 break;
             case CurrentMenu.customize:
 
@@ -93,6 +98,15 @@ public class MainMenuManager : MonoBehaviour
             vCams.Priority = 10;
         }
         cameras[camera].Priority = 11;
+    }
+
+    private void DisableMenus()
+    {
+        clickToContinueTxt.SetActive(false);
+        mainMenuButtons.SetActive(false);
+        customizeCharacterMenu.SetActive(false);
+        lvlSelectMenu.SetActive(false);
+        Debug.Log("Menus Disabled");
     }
 
     private void EnableUIElement(GameObject uiOb, bool enable)
