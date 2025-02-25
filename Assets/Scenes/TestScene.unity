@@ -1367,7 +1367,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2314071473840436761, guid: a9394df1575748c4ba2f013851f5f2c2, type: 3}
       propertyPath: editorMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4949250840884847952, guid: a9394df1575748c4ba2f013851f5f2c2, type: 3}
       propertyPath: trickControls

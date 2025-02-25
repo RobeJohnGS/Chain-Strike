@@ -4,14 +4,14 @@ using UnityEngine.UI;
 using UnityEngine.Animations;
 using Cinemachine;
 using System.Linq;
+using System.Collections.Generic;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Animator menuAnimator;
     [SerializeField] CurrentMenu currentMenu;
     [Header("Cameras")]
-    [SerializeField] GameObject mainCamera;
-    [SerializeField] GameObject customizeCamera;
+    [SerializeField, Tooltip("Main Camera: 0\nLevel Select Camera: 1\nCustomizeCamera: 2\nSettings Camera: 3")] CinemachineVirtualCamera[] cameras;
     [Header("UI Elements")]
     [SerializeField] GameObject clickToContinueTxt;
     [SerializeField] GameObject mainMenuButtons;
@@ -42,21 +42,9 @@ public class MainMenuManager : MonoBehaviour
                     
                 }
                 break;
-        }
-    }
-
-    public void SwitchMenu(int newMenu)
-    {
-        //Switch to the new menu using ints
-        currentMenu = (CurrentMenu)newMenu;
-
-        switch (currentMenu)
-        {
-            case CurrentMenu.clickToStart:
-                
+            case CurrentMenu.menuSelection:
                 break;
             case CurrentMenu.levelSelect:
-
                 break;
             case CurrentMenu.customize:
 
@@ -67,10 +55,44 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void SelectCustomizeCharacter()
+    public void SwitchMenu(int newMenu)
     {
-        currentMenu = CurrentMenu.customize;
-        EnableUIElement(customizeCharacterMenu, true);
+        //Switch to the new menu using ints
+        currentMenu = (CurrentMenu)newMenu;
+        Debug.Log("Switching to " + (CurrentMenu)newMenu + " menu");
+
+        switch (currentMenu)
+        {
+            case CurrentMenu.clickToStart:
+                //Shouldn't be switching to this menu
+                break;
+            case CurrentMenu.menuSelection:
+                //Disables the click to continue text
+                clickToContinueTxt.SetActive(false);
+                //enables the main menu buttons
+                mainMenuButtons.SetActive(true);
+                //Starts the main menu button animation
+                menuAnimator.SetTrigger("MainButtons");
+                break;
+            case CurrentMenu.levelSelect:
+                SwitchCamera(1);
+                break;
+            case CurrentMenu.customize:
+
+                break;
+            case CurrentMenu.settings:
+
+                break;
+        }
+    }
+
+    private void SwitchCamera(int camera)
+    {
+        foreach(CinemachineVirtualCamera vCams in cameras)
+        {
+            vCams.Priority = 10;
+        }
+        cameras[camera].Priority = 11;
     }
 
     private void EnableUIElement(GameObject uiOb, bool enable)
